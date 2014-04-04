@@ -6,14 +6,14 @@ configure do
 
   set :logging, :true
 
-  settings.sprockets.append_path("assets/bower_components")
-
   # Adds the config to settings
   config_file 'config.yml'
 
+  settings.sprockets.append_path("assets/bower_components")
+  settings.sprockets.append_path("assets/widgets")
+
   helpers do
     def protected!
-      settings.twitter['consumer_key'] = 'qweqwe'
      # Put any authentication code you want in here.
      # This method is run before accessing any resource.
     end
