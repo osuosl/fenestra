@@ -8,7 +8,6 @@ twitter = Twitter::REST::Client.new do |config|
   config.consumer_secret = settings.twitter['consumer_secret']
   config.oauth_token = settings.twitter['oauth_token']
   config.oauth_token_secret = settings.twitter['oauth_token_secret']
-
 end
 
 search_term = URI::encode('osuosl')

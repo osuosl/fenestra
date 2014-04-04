@@ -8,4 +8,11 @@ dashing.controller('BuzzwordsCtrl', ['$scope',
       angular.extend($scope, data);
     });
   }
-]);
+])
+
+.directive('buzzwordList', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '/assets/buzzwords/buzzwords.html'
+  }
+});
