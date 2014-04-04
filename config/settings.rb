@@ -6,6 +6,8 @@ configure do
 
   set :logging, :true
 
+  settings.sprockets.append_path("assets/bower_components")
+
   # Adds the config to settings
   config_file 'config.yml'
 

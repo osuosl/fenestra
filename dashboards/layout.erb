@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="dashing">
 <head>
   <meta charset="utf-8"/>
   <meta name="description" content="">
@@ -8,8 +8,16 @@
 
   <title><%= yield_content(:title) %></title>
 
-  <!-- The javascript and css are managed by sprockets. The files can be found in the /assets folder-->
-  <script type="text/javascript" src="/assets/application.js"></script>
+  <!-- Jquery -->
+  <script type="text/javascript" src="/assets/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="/assets/gridster/dist/jquery.gridster.js"></script>
+
+  <!-- Angular -->
+  <script type="text/javascript" src="/assets/angular/angular.js"></script>
+
+  <!-- Angular bindings for dashing -->
+  <script type="text/javascript" src="/assets/dashing-angular.js"></script>
+
   <link rel="stylesheet" href="/assets/application.css">
 
   <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
@@ -20,7 +28,7 @@
     <div id="container">
       <%= yield %>
     </div>
-  
+
     <% if development? %>
       <div id="saving-instructions">
         <p>Paste the following at the top of <i><%= params[:dashboard] %>.erb</i></p>

@@ -1,0 +1,22 @@
+{
+  "name": "fenestra",
+  "version": "0.0.0",
+  "homepage": "https://github.com/osuosl/fenestra",
+  "authors": [
+    "Chance Zibolski <chance.zibolski@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.15",
+    "d3": "~3.4.4",
+    "gridster": "~0.5.1",
+    "jquery": "~2.1.0"
+  }
+}
