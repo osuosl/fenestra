@@ -11,7 +11,10 @@ Fenestra uses bower to handle JS dependencies, install bower like so:
 npm install -g bower
 ````
 
-To install the ruby dependencies run, or refer to the [Using RVM](#rvm) section.
+Once bower is installed, run `bower install` to install our JS dependencies.
+
+To install the ruby dependencies run the following command,
+or refer to the [Using RVM](#rvm) section.
 
 ````
 bundle install
