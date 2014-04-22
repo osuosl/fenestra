@@ -13,12 +13,9 @@ npm install -g bower
 
 Once bower is installed, run `bower install` to install our JS dependencies.
 
-To install the ruby dependencies run the following command,
+To install the ruby dependencies run `bundle install`,
 or refer to the [Using RVM](#rvm) section.
 
-````
-bundle install
-````
 
 <a name="rvm"></a>Using RVM
 =========
