@@ -27,3 +27,9 @@ rvm gemset create fenestra
 rvm gemset use fenestra
 bundle install
 ````
+
+Starting The App
+================
+
+To start Fenestra run `dashing start`
+
