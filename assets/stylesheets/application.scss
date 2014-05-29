@@ -125,7 +125,7 @@ h3 {
   opacity: 0.1;
   font-size: 275px;
   text-align: center;
-  margin-top: 82px;
+  //margin-top: 82px;
 }
 
 .list-nostyle {
@@ -143,11 +143,12 @@ h3 {
 }
 
 .widget {
-  padding: 25px 12px;
+  //padding: 25px 12px;
   text-align: center;
+  height: 100%;
   width: 100%;
-  display: table-cell;
-  vertical-align: middle;
+  //display: table-cell;
+  //vertical-align: middle;
 }
 
 .widget.status-warning {
@@ -255,3 +256,6 @@ h3 {
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+.ng-scope{
+	height:100%;
+}
