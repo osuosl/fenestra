@@ -3,3 +3,7 @@ twitter:
   consumer_secret: ''
   oauth_token: ''
   oauth_token_secret: ''
+
+projects:
+    - repo: osuosl/fenestra
+      branch: master
