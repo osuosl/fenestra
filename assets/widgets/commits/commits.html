@@ -1,0 +1,11 @@
+<div id="commits" class="widget-list" ng-controller="CommitsCtrl">
+    <h1 class="title">Project: {{ project.title }}</h1>
+    <div>
+        <span class="label">Committer</span>
+            <span class="commit_data">{{project.committer}}</span><br>
+    </div>
+    <div>
+        <span class="label">Commit Message</span>
+            <span class="commit_data"><pre>{{project.commit_message}}</pre></span>
+    </div>
+</div>
