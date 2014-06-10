@@ -1,25 +1,25 @@
 <% content_for :title do %>My super sweet dashboard<% end %>
 <div class="gridster" ng-controller="EventCtrl">
-  <ul>
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div ng-controller="BuzzwordsCtrl">
-        <buzzword-list></buzzword-list>
-      </div>
-    </li>
+	<ul>
+		<li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+		<div ng-controller="BuzzwordsCtrl">
+			<buzzword-list></buzzword-list>
+		</div>
+		</li>
+		<% if settings.twitter_set %>
+		<li data-row="1" data-col="2" data-sizex="2" data-sizey="1">
+		<div ng-controller="TweetCtrl">
+			<comment-carousel comments="comments">
+			</comment-carousel>
+		</div>
+		<i class="icon-twitter icon-background"></i>
+		</li>
+	<% end %>
+		<li data-row="1" data-col="3" data-sizex="2" data-sizey="1">
+		<div ng-controller="NeroCtrl">
+			<nero-img></nero-img>
+		</div>
+		</li>
 
-    <li data-row="1" data-col="2" data-sizex="2" data-sizey="1">
-      <div ng-controller="TweetCtrl">
-        <comment-carousel comments="comments">
-        </comment-carousel>
-      </div>
-      <i class="icon-twitter icon-background"></i>
-    </li>
-
-    <li data-row="1" data-col="3" data-sizex="2" data-sizey="1">
-      <div ng-controller="NeroCtrl">
-        <nero-img></nero-img>
-      </div>
-    </li>
-
-  </ul>
+	</ul>
 </div>
