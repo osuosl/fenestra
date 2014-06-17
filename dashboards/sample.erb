@@ -20,6 +20,18 @@
 			<nero-img></nero-img>
 		</div>
 		</li>
-
-	</ul>
+    <li data-row="1" data-col="2" data-sizex="2" data-sizey="1">
+      <div ng-controller="TweetCtrl">
+        <comment-carousel comments="comments">
+        </comment-carousel>
+      </div>
+      <i class="icon-twitter icon-background"></i>
+    </li>
+	
+	<li data-row"2" data-col="1" data-sizex="2" data-sizey="1">
+		<div ng-controller="CommitsCtrl">
+			<commits></commits>
+		</div>
+		</li>
+  </ul>
 </div>

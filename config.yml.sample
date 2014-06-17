@@ -4,10 +4,14 @@ twitter:
   oauth_token: ''
   oauth_token_secret: ''
 
-#nero
-#  #update-interval: '5s'
-#  images:
-#    - name: Sample
-#      url: http://...jpg
-#    - name: Sample 2
-#      url: https://...png
+nero
+  update-interval: '5s'
+  images:
+    - name: Sample
+      url: http://...jpg
+    - name: Sample 2
+      url: https://...png
+
+projects:
+    - repo: osuosl/fenestra
+      branch: master
