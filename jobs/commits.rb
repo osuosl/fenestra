@@ -28,12 +28,14 @@ SCHEDULER.every '5h' do
         data = JSON.parse(response.body)
         latest_committer = data['commit']['committer']['name']
         commit_message = data['commit']['message']
+		commit_date = data['commit']['date']
     end
 
     send_event('commits', { project:
                             {title: projects.first['repo'],
                              committer: latest_committer,
-                             commit_message: commit_message
+                             commit_message: commit_message,
+							 commit_date: commit_date
                             }
                           })
     puts 'rotating'
