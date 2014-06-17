@@ -139,10 +139,18 @@ h3 {
   list-style: none;
 }
 
-.gs_w {
-  width: 100%;
+.gridster ul li{
+	position:absolute;
+}
+
+.gs_w {  
+width: 100%;
   display: table;
   cursor: pointer;
+}
+
+.gridster ol li{
+	position:relative;
 }
 
 .widget {

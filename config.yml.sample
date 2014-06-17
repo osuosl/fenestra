@@ -7,3 +7,10 @@ twitter:
 projects:
     - repo: osuosl/fenestra
       branch: master
+nero
+  update-interval: '5s'
+  images:
+    - name: Sample
+      url: http://...jpg
+    - name: Sample 2
+      url: https://...png

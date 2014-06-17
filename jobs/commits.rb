@@ -1,6 +1,6 @@
 projects = settings.projects || []
 
-SCHEDULER.every '5s' do
+SCHEDULER.every '5h' do
     url_base = "https://api.github.com/repos/" + projects.first['repo']
     # Put together the branches url
     branches_url = URI(url_base + "/git/refs/heads/" + projects.first['branch'])
