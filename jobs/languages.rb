@@ -1,16 +1,16 @@
 projects = settings.projects || []
 
-SCHEDULER.every '1d' do
+SCHEDULER.every '1h' do
 	##Constructing github api url
 	url_base = "https://api.github.com/repos/" + projects.first['repo']
 	#latest_sha = nil
 	#latest_sha = data['object']['sha']
 	##Set other variables to nil
-	ruby = nil
-	python = nil
-	javascript = nil
-	css = nil
-	shell = nil
+	ruby = 20	
+	python = 2
+	javascript = 30
+	css = 10
+	shell = 5
 	language_url = URI(url_base + "/languages/") #latest_sha)
 	#Get data for each language
 	Net::HTTP::start(languages_url.host, languages_url.port,
@@ -46,12 +46,10 @@ SCHEDULER.every '1d' do
 		#g.data 'JavaScript', javascript
 		#g.data 'CSS', css
 		#g.data 'Shell', shell
-		g.write("assets/images/piechart.png")
+		g.write('piechart.png')
 	end
 	send_event('languages', { project:
-			   {title: projects.first['repo'],
-				   pie: "assets/images/piechart.png"
-	}
+			   {title: projects.first['repo']}
 	})
 	puts 'rotating'
 	projects.rotate!
