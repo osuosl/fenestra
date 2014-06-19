@@ -1,11 +1,11 @@
 <% content_for :title do %>My super sweet dashboard<% end %>
 <div class="gridster" ng-controller="EventCtrl">
 	<ul>
-		<li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+		<!--<li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
 		<div ng-controller="BuzzwordsCtrl">
 			<buzzword-list></buzzword-list>
 		</div>
-		</li>
+		</li>-->
 		<% if settings.twitter_set %>
 			<li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
 			<div ng-controller="TweetCtrl">
@@ -23,6 +23,11 @@
 		<li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
 		<div ng-controller="CommitsCtrl">
 			<commits></commits>
+		</div>
+		</li>
+		<li data-row="2" data-col="3" data-sizex="2" data-sizey="1">
+		<div ng-controller="LanguagesCtrl">
+			<languages-graph></languages-graph>
 		</div>
 		</li>
 	</ul>

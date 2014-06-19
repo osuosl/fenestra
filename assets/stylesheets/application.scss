@@ -158,6 +158,26 @@ text-align: center;
   width: 100%;
 }
 
+.widget-list{
+	text-align: center;
+}
+
+//Center all the things
+.widget-list:before{
+	content:'';
+	display: inline-block;
+	height:100%;
+	vertical-align: middle;
+	margin-right: -0.25em;
+}
+
+.wrapper{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .widget.status-warning {
   background-color: $background-warning-color-1;
   @include animation(status-warning-background, 2s, ease, infinite);
@@ -266,4 +286,5 @@ text-align: center;
 .ng-scope{
 	height:100%;
 }
+
 
