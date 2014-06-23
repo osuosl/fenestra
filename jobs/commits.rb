@@ -1,13 +1,14 @@
 projects = settings.projects || []
 
-SCHEDULER.every '5h' do
+SCHEDULER.every '1h' do
     url_base = "https://api.github.com/repos/" + projects.first['repo']
     # Put together the branches url
     branches_url = URI(url_base + "/git/refs/heads/" + projects.first['branch'])
     latest_sha = nil
     latest_committer = nil
     commit_message = nil
-    # Use the branches URL to get the latest commit sha for the branch
+    date = nil
+	# Use the branches URL to get the latest commit sha for the branch
     Net::HTTP::start(branches_url.host, branches_url.port,
         :use_ssl => branches_url.scheme == 'https') do |http|
         request = Net::HTTP::Get.new branches_url
@@ -28,13 +29,15 @@ SCHEDULER.every '5h' do
         data = JSON.parse(response.body)
         latest_committer = data['commit']['committer']['name']
         commit_message = data['commit']['message']
-    end
+    	date = data['commit']['committer']['date']
+	end
 
     send_event('commits', { project:
                             {title: projects.first['repo'],
                              committer: latest_committer,
-                             commit_message: commit_message
-                            }
+                             commit_message: commit_message,
+                             date: date
+							}
                           })
     puts 'rotating'
     projects.rotate!
