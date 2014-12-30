@@ -4,7 +4,7 @@ twitter:
   oauth_token: ''
   oauth_token_secret: ''
 
-nero
+nero:
   update-interval: '5s'
   images:
     - name: Sample
