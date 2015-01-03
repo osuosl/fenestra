@@ -64,3 +64,4 @@ bower_components
 ### Project Specific ###
 config.yml
 history.yml
+.sass-cache
