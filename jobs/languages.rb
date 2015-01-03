@@ -1,56 +1,45 @@
+require 'net/http'
+require 'json'
+require 'gruff'
+require 'octokit'
+
 projects = settings.projects || []
 
-SCHEDULER.every '1h' do
-	##Constructing github api url
-	url_base = "https://api.github.com/repos/" + projects.first['repo']
-	#latest_sha = nil
-	#latest_sha = data['object']['sha']
-	##Set other variables to nil
-	ruby = 20	
-	python = 2
-	javascript = 30
-	css = 10
-	shell = 5
-	language_url = URI(url_base + "/languages/") #latest_sha)
-	#Get data for each language
-	Net::HTTP::start(languages_url.host, languages_url.port,
-					 :use_ssl => languages_url.scheme == 'https') do |http|
-		request = Net::HTTP::Get.new languages_url
+SCHEDULER.every '5s' do
+    client = Octokit::Client.new(:access_token => settings.github['token'])
+    user = client.user 
+    user.login
+    languages_url = URI("https://api.github.com/repos/" + projects.first['repo'] + "/languages")
+    ruby = python = javascript = css = shell = 0
+    #Get data for each language
+    Net::HTTP.start(languages_url.host, languages_url.port, :use_ssl => (languages_url.scheme == 'https')) do |http|        
+        response = http.request(Net::HTTP::Get.new(languages_url.request_uri))
+        data = JSON.parse(response.body)    
+        ruby = ruby + (data['Ruby']).to_i
+        python = python + (data['Python']).to_i
+        javascript = javascript + (data['JavaScript']).to_i
+        css = css + (data['CSS']).to_i
+        shell = shell + (data['Shell']).to_i
+        end
 
-		response = http.request request
-		data = JSON.parse(response.body)
-		puts data
-		ruby = ruby + data['Ruby']
-		python = python + data['Python']
-		javascript = javascript + data['JavaScript']
-		css = css + data['CSS']
-		shell = shell + data['Shell']
-					 end
-
-	#Begin constructing actual g
-	#First let's try making a dataset
-	#def setup
-	@dataset = [
-		[:Ruby, [ruby]],
-		[:Python, [python]],
-		[:JavaScript, [javascript]],
-		[:CSS, [css]],
-		[:Shell, [shell]]
-	]
-	g = Gruff::Pie.new
-	g.title = "Languages used by the OSL"
-	@dataset.each do |data|
-		g.data(data[0], data[1])
-		#g.data 'Ruby', ruby
-		#g.data 'Python', python
-		#g.data 'JavaScript', javascript
-		#g.data 'CSS', css
-		#g.data 'Shell', shell
-		g.write('piechart.png')
-	end
-	send_event('languages', { project:
-			   {title: projects.first['repo']}
-	})
-	puts 'rotating'
-	projects.rotate!
+    #Begin constructing actual g
+    #First let's try making a dataset
+    @dataset = [
+        [:Ruby, [ruby]],
+        [:Python, [python]],
+        [:JavaScript, [javascript]],
+        [:CSS, [css]],
+        [:Shell, [shell]]
+    ]
+    g = Gruff::Pie.new
+    g.title = nil
+    g.theme = Gruff::Themes::PASTEL
+    #g.hide_legend = true
+    @dataset.each do |data|
+        g.data(data[0], data[1])
+    end
+    g.write("assets/images/piechart.png")
+    send_event('languages', {})
+    projects.rotate!
 end
+

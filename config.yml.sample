@@ -1,8 +1,14 @@
+// TODO make authentication environment variables
 twitter:
   consumer_key: ''
   consumer_secret: ''
   oauth_token: ''
   oauth_token_secret: ''
+
+github:
+  client_id: ''
+  client_secret: ''
+  token: ''
 
 nero:
   update-interval: '5s'
