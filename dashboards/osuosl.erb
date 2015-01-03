@@ -1,0 +1,39 @@
+<% content_for :title do %>OSU Open Source Lab<% end %>
+<div class="gridster" ng-controller="EventCtrl">
+	<ul>
+		<!--<li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+		<div ng-controller="BuzzwordsCtrl">
+			<buzzword-list></buzzword-list>
+		</div>
+		</li>-->
+		<% if settings.twitter_set %>
+			<li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
+			<div ng-controller="TweetCtrl">
+				<comment-carousel comments="comments">
+				</comment-carousel>
+			</div>
+			<i class="icon-twitter icon-background"></i>
+			</li>
+		<% end %>
+        <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+            <div ng-controller="">
+                <nagios></nagios>
+            </div>
+        </li>
+		<!--<li data-row="1" data-col="3" data-sizex="2" data-sizey="1">
+		<div ng-controller="NeroCtrl">
+			<nero-img></nero-img>
+		</div>
+		</li>-->
+		<li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+		<div ng-controller="CommitsCtrl">
+			<commits></commits>
+		</div>
+		</li>
+		<li data-row="2" data-col="3" data-sizex="2" data-sizey="1">
+		<div ng-controller="LanguagesCtrl">
+			<languages-graph></languages-graph>
+		</div>
+		</li>
+	</ul>
+</div>
