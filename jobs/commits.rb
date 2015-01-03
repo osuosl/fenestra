@@ -4,7 +4,7 @@ require 'octokit'
 
 projects = settings.projects || []
 
-SCHEDULER.every '5s' do
+SCHEDULER.every '5h' do
     client = Octokit::Client.new(:access_token => settings.github['token'])
     user = client.user
     user.login
