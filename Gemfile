@@ -8,3 +8,4 @@ gem 'gruff'
 gem 'json'
 gem 'net'
 gem "octokit", "~> 3.0"
+gem 'jenkins_api_client'
