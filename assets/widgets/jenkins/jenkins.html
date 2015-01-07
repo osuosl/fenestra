@@ -1,9 +1,7 @@
-<div id='jenkins' class='widget-list' ng-controller='JenkinsCtrl'>
+<div class='widget-list {{j.color}}' ng-controller='JenkinsCtrl'>
     <div class='wrapper'>
-        <h1 class='title'>Jenkins Builds</h1>
-        <p class='label'>{{jenkins.name}}</p>
-        <p class='label'>Last built: <span class='commit_data'>{{jenkins.timestamp}}</span></p>
-        <p class='label'>Status: <span class='commit_data'>{{jenkins.currentResult}}</span></p>
+        <h2 class='title'>Jenkins Builds for OSL</h2>
+        <p class='label'>Percent Passing: {{j.value}}</p>
         </div>
 </div>
 

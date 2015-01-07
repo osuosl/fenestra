@@ -5,7 +5,7 @@ require 'octokit'
 
 projects = settings.projects || []
 
-SCHEDULER.every '5s' do
+SCHEDULER.every '1h' do
     client = Octokit::Client.new(:access_token => settings.github['token'])
     user = client.user 
     user.login
@@ -33,7 +33,11 @@ SCHEDULER.every '5s' do
     ]
     g = Gruff::Pie.new
     g.title = nil
-    g.theme = Gruff::Themes::PASTEL
+    g.theme = {
+    :colors =>['#A11C03', '#9DB61E', '#2C3E50', '#F39C12'],
+    :marker_color => '#000',
+    :background_colors => ['#00B0C6', '#00B0C6']
+    }
     #g.hide_legend = true
     @dataset.each do |data|
         g.data(data[0], data[1])

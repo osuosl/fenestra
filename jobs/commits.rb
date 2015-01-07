@@ -4,7 +4,7 @@ require 'octokit'
 
 projects = settings.projects || []
 
-SCHEDULER.every '5h' do
+SCHEDULER.every '1h' do
     client = Octokit::Client.new(:access_token => settings.github['token'])
     user = client.user
     user.login
@@ -37,5 +37,5 @@ SCHEDULER.every '5h' do
                              date: commit_date
 							}
                           })
-    #projects.rotate!
+    projects.rotate!
 end

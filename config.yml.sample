@@ -6,8 +6,6 @@ twitter:
   oauth_token_secret: ''
 
 github:
-  client_id: ''
-  client_secret: ''
   token: ''
 
 nero:
@@ -21,3 +19,10 @@ nero:
 projects:
     - repo: osuosl/fenestra
       branch: master
+
+jenkins:
+  url: ''
+  user: ''
+  password: ''
+
+
