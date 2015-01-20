@@ -4,7 +4,7 @@ require 'octokit'
 
 projects = settings.projects || []
 
-SCHEDULER.every '1h' do
+SCHEDULER.every '2m' do
     client = Octokit::Client.new(:access_token => settings.github['token'])
     user = client.user
     user.login
@@ -27,6 +27,7 @@ SCHEDULER.every '1h' do
         data = JSON.parse(response.body)
         latest_committer = data['commit']['committer']['name']
         commit_message = data['commit']['message']
+        commit_message = commit_message.split[0...15].join(' ')
     	commit_date = Time.parse(data['commit']['committer']['date']).strftime("%a %b %e %Y")
 	end
 
