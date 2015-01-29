@@ -1,0 +1,31 @@
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization', 'version':'1','packages':['timeline']}]}"></script>
+<script type="text/javascript">
+window.onload(drawChart());
+window.onload(
+function drawChart() {
+  var container = document.getElementById('students');
+  var chart = new google.visualization.Timeline(container);
+  var dataTable = new google.visualization.DataTable();
+
+  dataTable.addColumn({ type: 'string', id: 'Position' });
+  dataTable.addColumn({ type: 'string', id: 'Name' });
+  dataTable.addColumn({ type: 'date', id: 'Start' });
+  dataTable.addColumn({ type: 'date', id: 'End' });
+
+  dataTable.addRows([
+    ['Front-End Engineer', 'Lucy Wyman', new Date(2013, 11), new Date(2014, 2) ],
+    [ '1', 'George Washington', new Date(2013, 3, 29), new Date(2014, 2, 3) ],
+    [ '2', 'John Adams',        new Date(2013, 2, 3),  new Date(2014, 2, 3) ],
+    [ '3', 'Thomas Jefferson',  new Date(2013, 2, 3),  new Date(2014, 2, 3) ]]);
+
+  chart.draw(dataTable);
+}
+</script>
+
+
+<div id='timeline' class='widget-list' ng-controller="TimelineCtrl">
+    <div class="wrapper">
+        <h2 class='title'>Student Timeline</h2>
+        <div id='students'></div>        
+    </div>
+</div>
