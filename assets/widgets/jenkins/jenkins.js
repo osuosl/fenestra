@@ -11,7 +11,7 @@ dashing.controller('JenkinsCtrl', ['$scope',
   }
 ])
 
-.directive('canvas', function(){
+/*.directive('canvas', function(){
   return{
     restrict: 'AEC',
     template: "<canvas width='280' height='150' id='jenkins-canvas'></canvas>",
@@ -43,7 +43,7 @@ dashing.controller('JenkinsCtrl', ['$scope',
       scope.context.endPath();
     }
   };
-});
+});*/
 
 .directive('jenkinsWidget', function() {
 
