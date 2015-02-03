@@ -10,7 +10,6 @@ dashing.controller('TimelineCtrl', ['$scope',
   }
 ])
 
-.directive
 
 .directive('timeline', function() {
   return {
@@ -18,3 +17,4 @@ dashing.controller('TimelineCtrl', ['$scope',
     templateUrl: '/assets/timeline/timeline.html'
   }
 });
+

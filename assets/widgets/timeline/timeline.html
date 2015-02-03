@@ -1,28 +1,48 @@
-<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization', 'version':'1','packages':['timeline']}]}"></script>
-<script type="text/javascript">
-window.onload(drawChart());
-window.onload(
+<script type="text/javascript" src="google-timeline.js"></script>
+<script>
+window.onload = drawChart;
 function drawChart() {
   var container = document.getElementById('students');
   var chart = new google.visualization.Timeline(container);
   var dataTable = new google.visualization.DataTable();
 
-  dataTable.addColumn({ type: 'string', id: 'Position' });
+  dataTable.addColumn({ type: 'string', id: 'Team' });
   dataTable.addColumn({ type: 'string', id: 'Name' });
   dataTable.addColumn({ type: 'date', id: 'Start' });
   dataTable.addColumn({ type: 'date', id: 'End' });
 
   dataTable.addRows([
-    ['Front-End Engineer', 'Lucy Wyman', new Date(2013, 11), new Date(2014, 2) ],
-    [ '1', 'George Washington', new Date(2013, 3, 29), new Date(2014, 2, 3) ],
-    [ '2', 'John Adams',        new Date(2013, 2, 3),  new Date(2014, 2, 3) ],
-    [ '3', 'Thomas Jefferson',  new Date(2013, 2, 3),  new Date(2014, 2, 3) ]]);
+    [ 'Media', 'Elsie Phillips', new Date(2014, 6), new Date() ],
+    [ 'Media', 'Lucy Wyman', new Date(2013, 11), new Date() ],
+    [ 'Media', 'Jenn Garcia', new Date(2012, 6), new Date() ],
+    [ 'Media', 'Rachel Turner', new Date(2014, 3), new Date() ],
+    [ 'Developer', 'Evan Tschuy', new Date(2014, 6), new Date() ],
+    [ 'Developer', 'Ian Kronquist', new Date(2013, 11), new Date() ],
+    [ 'Developer', 'Chance Zibolski', new Date(2013, 11), new Date() ],
+    [ 'Developer', 'Dean Johnson', new Date(2012, 6), new Date() ],
+    [ 'Developer', 'Eli Voigt', new Date(2014, 6), new Date() ],
+    [ 'Developer', 'Jack Twilley', new Date(2013, 3), new Date() ],
+    [ 'Developer', 'Justin Brown', new Date(2014, 9), new Date() ],
+    [ 'Developer', 'Megan Goossens', new Date(2014, 5), new Date() ],
+    [ 'Developer', 'Justin Noah', new Date(2012, 6), new Date() ],
+    [ 'System Administrator', 'Trevor Bramwell', new Date(2010, 7), new Date() ],
+    [ 'System Administrator', 'Andy Tolvstad', new Date(2014, 12), new Date() ],
+    [ 'System Administrator', 'Anthony Miller', new Date(2010, 7), new Date() ],
+    [ 'System Administrator', 'Daniel Reichert', new Date(2010, 7), new Date() ],
+    [ 'System Administrator', 'Daniel Takamori', new Date(2010, 7), new Date() ],
+    [ 'System Administrator', 'Emily Dunham', new Date(2011, 4), new Date() ],
+    [ 'System Administrator', 'Eric Zubriske', new Date(2013, 12), new Date() ],
+    [ 'System Administrator', 'Garrett Seward', new Date(2014, 12), new Date() ],
+    [ 'System Administrator', 'Jeff Borcean', new Date(2014, 6), new Date() ],
+    [ 'System Administrator', 'Lee Leighton', new Date(2014, 5), new Date() ],
+    [ 'System Administrator', 'Sean Rettig', new Date(2012, 6), new Date() ],
+    [ 'System Administrator', 'Taylor Fahlman', new Date(2014, 12), new Date() ],
+    [ 'System Administrator', 'Simon McFarlane', new Date(2014, 12), new Date() ],
+    ]);
 
   chart.draw(dataTable);
 }
 </script>
-
-
 <div id='timeline' class='widget-list' ng-controller="TimelineCtrl">
     <div class="wrapper">
         <h2 class='title'>Student Timeline</h2>
