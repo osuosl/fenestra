@@ -1,6 +1,6 @@
 <script>
     function draw(){
-      canvas = getElementById('jenkins-canvas');
+      canvas = document.getElementById('jenkins-canvas');
       context = canvas.getContext('2d');
       var x = canvas.width / 2;
       var y = canvas.height / 2;
@@ -14,14 +14,14 @@
       context.lineWidth = 30;
       context.strokeStyle = '#444';
       context.stroke();
-      context.endPath();
+      context.closePath();
 
       context.beginPath();
       context.arc(x, y, radius, startAngle, endAngle-0.3, counterClockwise);
       context.lineWidth = 30;
       context.strokeStyle = '#fff';
       context.stroke();
-      context.endPath();
+      context.closePath();
     };
     window.onload = draw;
 </script>
@@ -29,7 +29,8 @@
     <div class='wrapper'>
         <h2 class='title'>Jenkins Builds for OSL</h2>
         <canvas id='jenkins-canvas'></canvas>
-        <p class='label'>Last built: {{ j.project }} at {{ j.time }}</p>
+        <h4> {{ j.value }}% builds are passing</h4>
+        <p class='label'>Last built: {{ j.project }} on {{ j.time }}</p>
         </div>
 </div>
 
