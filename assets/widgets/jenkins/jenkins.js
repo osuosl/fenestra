@@ -1,18 +1,21 @@
 var dashing = dashing || angular.module('dashing', []);
 
-dashing.controller('BuzzwordsCtrl', ['$scope',
+
+dashing.controller('JenkinsCtrl', ['$scope',
   function ($scope) {
     'use strict';
 
-    $scope.$on('buzzwords', function (e, data) {
+    $scope.$on('jenkins', function(e, data) {
       angular.extend($scope, data);
     });
   }
 ])
 
-.directive('buzzwordList', function() {
+
+.directive('jenkinsWidget', function() {
   return {
     restrict: 'E',
-    templateUrl: '/assets/buzzwords/buzzwords.html'
+    templateUrl: '/assets/jenkins/jenkins.html'
   }
 });
+

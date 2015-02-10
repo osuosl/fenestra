@@ -1,0 +1,36 @@
+<script>
+    function draw(){
+      canvas = document.getElementById('jenkins-canvas');
+      context = canvas.getContext('2d');
+      var x = canvas.width / 2;
+      var y = canvas.height / 2;
+      var radius = 50;
+      var startAngle = 0.8 * Math.PI;
+      var endAngle = 2.2 * Math.PI;
+      var counterClockwise = false;
+
+      context.beginPath();
+      context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+      context.lineWidth = 30;
+      context.strokeStyle = '#444';
+      context.stroke();
+      context.closePath();
+
+      context.beginPath();
+      context.arc(x, y, radius, startAngle, endAngle-0.3, counterClockwise);
+      context.lineWidth = 30;
+      context.strokeStyle = '#fff';
+      context.stroke();
+      context.closePath();
+    };
+    window.onload = draw;
+</script>
+<div class='widget-list {{ j.color }}' ng-controller='JenkinsCtrl'>
+    <div class='wrapper'>
+        <h2 class='title'>Jenkins Builds for OSL</h2>
+        <canvas id='jenkins-canvas'></canvas>
+        <h4> {{ j.value }}% builds are passing</h4>
+        <p class='label'>Last built: {{ j.project }} on {{ j.time }}</p>
+        </div>
+</div>
+

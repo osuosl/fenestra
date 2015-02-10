@@ -1,8 +1,12 @@
+// TODO make authentication environment variables
 twitter:
   consumer_key: ''
   consumer_secret: ''
   oauth_token: ''
   oauth_token_secret: ''
+
+github:
+  token: ''
 
 nero:
   update-interval: '5s'
@@ -15,3 +19,10 @@ nero:
 projects:
     - repo: osuosl/fenestra
       branch: master
+
+jenkins:
+  url: ''
+  user: ''
+  password: ''
+
+

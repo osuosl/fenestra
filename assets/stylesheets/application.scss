@@ -102,7 +102,7 @@ h1 {
 }
 h2 {
   text-transform: uppercase;
-  font-size: 76px;
+  font-size: 28px;
   font-weight: 700;
   color: $text-color;
 }
@@ -156,6 +156,29 @@ width: 100%;
 text-align: center;
   height: 100%;
   width: 100%;
+}
+
+.widget-list{
+	text-align: center;
+    height: 100%;
+}
+
+//Center all the things
+.widget-list:before{
+	content:'';
+	display: inline-block;
+	height:100%;
+	vertical-align: middle;
+	margin-right: -0.25em;
+}
+
+.wrapper{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: auto;
+	margin-right: auto;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .widget.status-warning {
@@ -266,4 +289,10 @@ text-align: center;
 .ng-scope{
 	height:100%;
 }
+
+// My Styles
+#graph{
+    width: 60%;
+} 
+
 

@@ -1,41 +1,42 @@
+require 'net/http'
+require 'json'
+require 'octokit'
+
 projects = settings.projects || []
 
-SCHEDULER.every '5h' do
+SCHEDULER.every '2m' do
+    client = Octokit::Client.new(:access_token => settings.github['token'])
+    user = client.user
+    user.login
+    name = projects.first['repo']
     url_base = "https://api.github.com/repos/" + projects.first['repo']
     # Put together the branches url
     branches_url = URI(url_base + "/git/refs/heads/" + projects.first['branch'])
-    latest_sha = nil
-    latest_committer = nil
-    commit_message = nil
-    # Use the branches URL to get the latest commit sha for the branch
-    Net::HTTP::start(branches_url.host, branches_url.port,
-        :use_ssl => branches_url.scheme == 'https') do |http|
-        request = Net::HTTP::Get.new branches_url
+    latest_sha = latest_committer = commit_message = commit_date = nil
+	# Use the branches URL to get the latest commit sha for the branch
+    Net::HTTP.start(branches_url.host, branches_url.port, :use_ssl => (branches_url.scheme == 'https')) do |http|
+		response = http.request(Net::HTTP::Get.new(branches_url.request_uri))
+		data = JSON.parse(response.body)
+		latest_sha = data['object']['sha']
+	end
 
-        response = http.request request
-        data = JSON.parse(response.body)
-        puts data
-        latest_sha = data['object']['sha']
-    end
-
-    # Commit URL
-    commit_url = URI(url_base + "/commits/" + latest_sha)
-    Net::HTTP::start(commit_url.host, commit_url.port,
-        :use_ssl => commit_url.scheme == 'https') do |http|
-        request = Net::HTTP::Get.new commit_url
-
-        response = http.request request
+	# Commit URL
+	commit_url = URI(url_base + "/commits/" + latest_sha)
+	Net::HTTP::start(commit_url.host, commit_url.port, :use_ssl => commit_url.scheme == 'https') do |http|
+        response = http.request(Net::HTTP::Get.new(commit_url.request_uri))
         data = JSON.parse(response.body)
         latest_committer = data['commit']['committer']['name']
         commit_message = data['commit']['message']
-    end
+        commit_message = commit_message.split[0...15].join(' ')
+    	commit_date = Time.parse(data['commit']['committer']['date']).strftime("%a %b %e %Y")
+	end
 
     send_event('commits', { project:
-                            {title: projects.first['repo'],
+                            {name: name,
                              committer: latest_committer,
-                             commit_message: commit_message
-                            }
+                             commit_message: commit_message,
+                             date: commit_date
+							}
                           })
-    puts 'rotating'
     projects.rotate!
 end

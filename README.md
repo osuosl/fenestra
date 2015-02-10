@@ -45,3 +45,5 @@ Starting The App
 
 To start Fenestra run `dashing start`
 
+
+If you have trouble installing gruff, look here: http://stackoverflow.com/questions/8768103/how-to-install-gruff-rmagic-gem-on-ubuntu-system
