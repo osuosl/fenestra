@@ -8,6 +8,14 @@
       var startAngle = 0.8 * Math.PI;
       var endAngle = 2.2 * Math.PI;
       var counterClockwise = false;
+      // Getting angular scope variable in here is not easy
+      var dom_el = document.querySelector('[ng-controller="JenkinsCtrl"]');
+      var ng_el = angular.element(dom_el);
+      var ng_el_scope = ng_el.scope();
+      var percent = ng_el_scope.j.value;
+
+      var leftover = ((2.2 - 0.8) / ((100 - percent) / 100)) - startAngle; 
+      console.log(leftover);
 
       context.beginPath();
       context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
@@ -17,7 +25,7 @@
       context.closePath();
 
       context.beginPath();
-      context.arc(x, y, radius, startAngle, endAngle-0.3, counterClockwise);
+      context.arc(x, y, radius, startAngle, leftover, counterClockwise);
       context.lineWidth = 30;
       context.strokeStyle = '#fff';
       context.stroke();
@@ -25,12 +33,12 @@
     };
     window.onload = draw;
 </script>
-<div class='widget-list {{ j.color }}' ng-controller='JenkinsCtrl'>
+<div id='jenkins' class='widget-list {{ j.color }}' ng-controller='JenkinsCtrl'>
     <div class='wrapper'>
         <h2 class='title'>Jenkins Builds for OSL</h2>
         <canvas id='jenkins-canvas'></canvas>
         <h4> {{ j.value }}% builds are passing</h4>
-        <p class='label'>Last built: {{ j.project }} on {{ j.time }}</p>
+        <p class='label'>Last built: {{ j.project }} at {{ j.time }}</p>
         </div>
 </div>
 

@@ -8,27 +8,29 @@ JENKINS_URI = URI.parse(settings.jenkins['url'])
 
 JENKINS_AUTH = {
     'name' => settings.jenkins['user'],
-    'password' => settings.jenkins['password']
+    'password' => settings.jenkins['password'],
+    'token' => settings.jenkins['token']
 } 
 
 # the key of this mapping must be a unique identifier for your job, the according value must be the name that is specified in jenkins
-def get_json(url)
   #http = Net::HTTP.start(JENKINS_URI.host, JENKINS_URI.port, :use_ssl => (request_url.scheme == 'https')) do |http|
+def get_json(url)
   http = Net::HTTP.new(JENKINS_URI.host, JENKINS_URI.port)
   http.use_ssl = true
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
   http.start do |http|
-      request = Net::HTTP::Get.new(request_url.request_uri)
+      request = Net::HTTP::Get.new(url.request_uri)
       if JENKINS_AUTH['name']
         request.basic_auth(JENKINS_AUTH['name'], JENKINS_AUTH['password'])
       end
       response = http.request(request)
-      JSON.parse(response.body)
+      json = response.body.force_encoding('UTF-8')
+      JSON.parse(json, :quirks_mode => true)
   end
 end
 
 
-SCHEDULER.every '1h' do
+SCHEDULER.every '1m' do
     request_url = JENKINS_URI + "/api/json"
     time = 0
     project = nil
@@ -41,10 +43,10 @@ SCHEDULER.every '1h' do
         else 
             red = red+1
         end
-        job_url = URI.parse(job['url'])
+        job_url = URI.parse(job['url'] + "api/json")
         job_info = get_json(job_url)
-        if job_info['buildable'] === true
-            build_url = URI.parse(job_info['lastBuild']['url'])
+        if job_info['lastBuild']
+            build_url = URI.parse(job_info['lastBuild']['url'] + "/api/json")
             build_info = get_json(build_url)
             temp = build_info['timestamp']
             if temp > time
@@ -53,14 +55,12 @@ SCHEDULER.every '1h' do
             end
         end
     end
-    # Jenkins works in milliseconds, while epoch time is in seconds
-    time = time/1000
-    time = Time.at.strftime("%k:%M, %h %e, %Y")
-    percent = (blue/(red+blue)) * 100
+    new_time = Time.at(time/1000).strftime("%k:%M, %h %e, %Y")
+    percent = ((blue/(red+blue)) * 100).round(2)
     color = nil
     if percent >= 80
         color = 'green'
-    elsif percent <80 and percent > 60
+    elsif percent < 80 and percent > 60
         color = 'yellow'
     else 
         color='red' 
@@ -71,7 +71,7 @@ SCHEDULER.every '1h' do
       red: red,
       blue: blue,
       project: project,
-      time: time}
+      time: new_time}
     })
 end
 
