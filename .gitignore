@@ -65,3 +65,5 @@ bower_components
 config.yml
 history.yml
 .sass-cache
+build/
+v/
