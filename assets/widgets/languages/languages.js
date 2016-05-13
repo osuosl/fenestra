@@ -13,6 +13,6 @@ dashing.controller('LanguagesCtrl', ['$scope',
 .directive('languagesGraph', function() {
 	return {
 		restrict: 'E',
-templateUrl: '/assets/languages/languages.html'
+    templateUrl: '/assets/languages/languages.html'
 	}
 });
