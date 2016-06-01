@@ -7,6 +7,9 @@ There are a few separate components involved when creating a widget.
 
 Layouts
 -------
+The Layout is for the dashboard itself.  You can pretty much copy-paste 
+one of the other widgets, replace the widget names with your widget's 
+name, and then set it to the correct size and width. 
 
 The Job
 -------
