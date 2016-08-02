@@ -6,7 +6,6 @@ dashing.controller('ExampleCtrl', ['$scope',
 
         $scope.$on('counter', function (e, data) {
             $scope.exampleCounter = data.count;
-
         });
     }
 ])
