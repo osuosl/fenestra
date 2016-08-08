@@ -30,7 +30,7 @@ def get_json(url)
 end
 
 
-SCHEDULER.every '1m' do
+SCHEDULER.every '1h' do
     request_url = JENKINS_URI + "/api/json"
     time = 0
     project = nil

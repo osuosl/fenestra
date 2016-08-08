@@ -5,7 +5,8 @@ dashing.controller('ExampleCtrl', ['$scope',
         'use strict';
 
         $scope.$on('counter', function (e, data) {
-            $scope.exampleCounter = data.count;
+            //$scope.exampleCounter = data.count;
+            angular.extend($scope, data);
         });
     }
 ])
@@ -13,6 +14,5 @@ dashing.controller('ExampleCtrl', ['$scope',
 .directive('exampleNum', function() {
     return {
         restrict: 'E', templateUrl: '/assets/example/example.html'
-
     }
 });
