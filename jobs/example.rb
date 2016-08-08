@@ -39,8 +39,10 @@ SCHEDULER.every '15s' do
     end
 
     #puts "#{user_times}"
-    top_users = user_times.sort_by{|_key, value| value}
-    #puts "#{top_users}"
+    top_users = user_times.sort_by{|name, time| time}
+    puts "#{top_users}"
+    top_users = top_users[0..10]
+    puts "#{top_users}"
 
     #.sort_by{|hsh| hsh[:time]}
 
@@ -76,11 +78,11 @@ SCHEDULER.every '15s' do
 
     time_graph = Gruff::Line.new
     time_graph.title = 'Times'
-    #puts "#{week}"
+    i = 0
     week.each do |day|
-        time_graph.labels[0] = day
+        time_graph.labels[i] = day
+        i += 1
     end
-    #time_graph.labels = week
     data = []
     total_times.each do |time|
         data << time[1]
