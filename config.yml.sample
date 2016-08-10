@@ -25,6 +25,12 @@ jenkins:
   user: ''
   password: ''
 
+timesync:
+  url: ''
+  user: ''
+  password: ''
+  time_length:
+
 dimensions:
   width: 1920
   height: 1080
