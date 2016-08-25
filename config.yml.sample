@@ -1,4 +1,4 @@
-// TODO make authentication environment variables
+# TODO make authentication environment variables
 twitter:
   consumer_key: ''
   consumer_secret: ''
