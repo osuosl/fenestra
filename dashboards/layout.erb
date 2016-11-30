@@ -8,6 +8,14 @@
 
   <title><%= yield_content(:title) %></title>
 
+  <!--Set the dimensions for Javascript to use -->
+  <script type="text/javascript">
+    dimensions = [
+      <%= settings.dimensions[:width] %>,
+      <%= settings.dimensions[:height] %>,
+    ];
+  </script>
+
   <!--Google fonts for making things pretty-->
   <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
