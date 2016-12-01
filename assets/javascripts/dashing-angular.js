@@ -49,7 +49,10 @@ dashing.showGridsterInstructions = function() {
 
 $(function(){ //DOM Ready
   dashing.widget_margins = [5, 5];
-  dashing.widget_base_dimensions = [300, 360];
+  dashing.widget_base_dimensions = [
+    (dimensions[0] - 60) / 4,
+    (dimensions[1] - 30) / 2,
+  ];
   dashing.numColumns = 4;
 
   contentWidth = (dashing.widget_base_dimensions[0] + dashing.widget_margins[0] * 2) * dashing.numColumns
