@@ -3,19 +3,21 @@
 // ----------------------------------------------------------------------------
 $background-color:  #eb9c3c;
 
-$title-color:       rgba(255, 255, 255, 0.7);
+$title-color:       rgba(255, 255, 255, 1.0);
 $moreinfo-color:    rgba(255, 255, 255, 0.7);
 
 // ----------------------------------------------------------------------------
 // Widget-comment styles
 // ----------------------------------------------------------------------------
-.widget-comments {
+#tweet_mentions {
 
   background-color: $background-color;
 
   .title {
     color: $title-color;
-    margin-bottom: 15px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-top: 80px;
   }
 
   .name {
@@ -23,7 +25,9 @@ $moreinfo-color:    rgba(255, 255, 255, 0.7);
   }
 
   .comment-container {
-    // display: none;
+    h3 {
+      margin-bottom: 20px;
+    }
   }
 
 }
