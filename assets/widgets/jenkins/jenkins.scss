@@ -1,18 +1,36 @@
 .green{
-    background-color:#86D751;}
+  background-color:#86D751;
+}
 
 .yellow{
-    background-color: #EDDE43;}
+  background-color: #EDDE43;
+}
+
 .red{
-    background-color: #E3394F;}
-
-.label {
-    text-align: center;
-    padding: 5px;
+  background-color: #E3394F;
 }
 
-.commit_data{
-    color: #fff;
+#jenkins .wrapper {
+  margin-top: 80px;
 }
 
+#jenkins .wrapper .title {
+  font-weight: bold;
+  font-size: 1.8em;
+}
 
+#jenkins .wrapper canvas {
+  margin: 25px 0 10px 0;
+}
+
+#jenkins .wrapper h4 {
+  text-align: center;
+  padding: 5px;
+  line-height: 2.5em;
+}
+
+#jenkins .wrapper .label {
+  text-align: center;
+  padding: 5px;
+  line-height: 2.5em;
+}
