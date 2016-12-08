@@ -13,14 +13,10 @@ SCHEDULER.every '1h' do
   sum = 0
 
   projects.each do |project|
-    languages_url = URI("https://api.github.com/repos/" + project['repo'] + "/languages")
-    Net::HTTP.start(languages_url.host, languages_url.port, :use_ssl => (languages_url.scheme == 'https')) do |http|
-      response = http.request(Net::HTTP::Get.new(languages_url.request_uri))
-      data = JSON.parse(response.body)
-      data.each do |lang, val|
-        languages[lang] = languages[lang] + val
-        sum += val
-      end
+    data = client.languages project['repo']
+    data.each do |lang, val|
+      languages[lang] = languages[lang] + val
+      sum += val
     end
   end
 
@@ -33,9 +29,9 @@ SCHEDULER.every '1h' do
   :marker_color => '#000',
   :background_colors => ['#00B0C6', '#00B0C6']
   }
-  #g.hide_legend = true
+
   languages.each do |lang, val|
-    if val/sum > 0.01 then
+    if val.fdiv(sum) > 0.01 then
       g.data(lang, val)
     end
   end
