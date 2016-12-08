@@ -7,8 +7,6 @@ projects = settings.projects || []
 
 SCHEDULER.every '1h' do
   client = Octokit::Client.new(:access_token => settings.github['token'])
-  user = client.user
-  user.login
   languages = Hash.new(0)
   sum = 0
 
