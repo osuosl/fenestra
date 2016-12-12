@@ -1,19 +1,18 @@
 Fenestra
 ========
 
-A dashboard for the OSU Open Source Lab, based on the Dashing 
-dashboard by Shopify. Check out http://shopify.github.com/dashing for 
-more information.
+A dashboard for the OSU Open Source Lab, based on the Smashing dashboard.
+Check out https://github.com/SmashingDashboard/smashing for more information.
 
-This dashboard includes module for displaying OSL datacenter, FTP and 
-social data. It will eventually include a touch interface to the API, 
-allowing for control of the displayed dashboard via a web or Android 
+This dashboard includes module for displaying OSL datacenter, FTP and
+social data. It will eventually include a touch interface to the API,
+allowing for control of the displayed dashboard via a web or Android
 app.
 
 Setup
 -----
 
-Fenestra uses bower to handle JS dependencies, install bower 
+Fenestra uses bower to handle JS dependencies, install bower
 and use it by running:
 
 .. code::
@@ -21,16 +20,16 @@ and use it by running:
     npm install -g bower
     bower install
 
-Fenestra requires Ruby Version 1.9.X and above; if you are not using 
+Fenestra requires Ruby Version 1.9.X and above; if you are not using
 this by default refer to the `Using RVM`_ section.
-To install the ruby dependencies run 
+To install the ruby dependencies run
 
 .. code::
 
     bundle install
 
-If you get an error message involving rmagick, try 
-:code:`sudo apt-get install libmagickwand-dev` for Debian and 
+If you get an error message involving rmagick, try
+:code:`sudo apt-get install libmagickwand-dev` for Debian and
 :code:`yum install ImageMagick-devel` for RHEL.
 
 Lastly, copy the file `config.yml.sample` to `config.yml`
@@ -44,7 +43,7 @@ Using RVM
 
 First make sure you have RVM installed http://rvm.io/rvm/install.
 
-Next, make sure you have RVM in your PATH and sourced RVM scripts by 
+Next, make sure you have RVM in your PATH and sourced RVM scripts by
 adding the following lines to your bashrc:
 
 .. code::
@@ -65,10 +64,10 @@ Create a gemset specifically for your Fenestra gems:
 Starting The App
 ----------------
 
-To start Fenestra, run 
+To start Fenestra, run
 
 .. code::
 
-    dashing start
+    smashing start
 
 .. Using RVM: #using-rvm

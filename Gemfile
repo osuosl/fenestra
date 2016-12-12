@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'dashing'
+gem 'smashing'
 gem 'unicorn', '~> 5.1.0'
 
 ## Remove this if you don't need a twitter widget.
