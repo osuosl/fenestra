@@ -32,6 +32,13 @@ timesync:
   use_ldap:
   time_length:
 
+pagerduty:
+  url: ''
+  key: ''
+  schedules:
+    -
+    -
+
 dimensions:
   width: 1920
   height: 1080
