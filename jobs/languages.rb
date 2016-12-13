@@ -5,7 +5,7 @@ require 'octokit'
 
 projects = settings.projects || []
 
-SCHEDULER.every '1h' do
+SCHEDULER.every '10s' do
   client = Octokit::Client.new(:access_token => settings.github['token'])
   languages = Hash.new(0)
   sum = 0
@@ -28,11 +28,13 @@ SCHEDULER.every '1h' do
   :background_colors => ['#00B0C6', '#00B0C6']
   }
 
-  languages.each do |lang, val|
-    if val.fdiv(sum) > 0.01 then
+  languages
+    .select { |_, val| val > 0.01 }
+    .sort_by{ |_, val| val }
+    .reverse
+    .each do |lang, val|
       g.data(lang, val)
     end
-  end
   g.write("assets/images/piechart.png")
   send_event('languages', {})
 end
