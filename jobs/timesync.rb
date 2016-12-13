@@ -1,16 +1,21 @@
 require 'sinatra'
 require 'gruff'
-require_relative 'rimesync/lib/rimesync.rb'
+require 'rimesync'
 require 'net/http'
+require 'webmock'
 
-SCHEDULER.every '5s' do
-    # Allows real http connections
-    # May not be necessary in production
-    WebMock.disable!
+SCHEDULER.every '1h' do
 
     # Auth with timesync through rimesync
     ts = TimeSync.new(baseurl=settings.timesync['url'])
-    resp = ts.authenticate(username:settings.timesync['user'], password:settings.timesync['password'], auth_type:"password")
+    resp = ts.authenticate(username:settings.timesync['user'],
+                           password:settings.timesync['password'],
+                           auth_type:settings.timesync['use_ldap'] ? 'ldap' : 'password')
+
+    if resp.key? 'rimesync error'
+        send_event('timesync', {'error': resp})
+        return
+    end
 
     # Number of days to track things over
     dayNumber = settings.timesync['time_length']
@@ -37,6 +42,11 @@ SCHEDULER.every '5s' do
 
     # Get all the times from the past week
     times = ts.get_times(query)
+
+    if times.is_a? Hash
+        send_event('timesync', {'error': resp})
+        return
+    end
 
     # Get the total time for each user that worked in the past week
     user_times = Hash.new
@@ -83,6 +93,12 @@ SCHEDULER.every '5s' do
     # Make the projects pie chart
     project_graph = Gruff::Pie.new
     project_graph.title = 'Projects'
+    project_graph.theme = {
+        :colors => ['#A11C03', '#9DB61E', '#2C3E50', '#F39C12', '#BF42F4',
+                    '#00C437', '#210FA8', '#763e82', '#D1C600', '#05B270'],
+        :marker_color => '#000',
+        :background_colors => ['#12b0c5', '#12b0c5']
+    }
     # Put in the data: name and total time
     project_times.each do |project|
         project_graph.data(project[0], project[1])
@@ -124,6 +140,12 @@ SCHEDULER.every '5s' do
     # Make the line graph for the total times
     time_graph = Gruff::Line.new
     time_graph.title = 'Times'
+    time_graph.theme = {
+        :colors => ['#A11C03'],
+        :marker_color => '#fff',
+        :font_color => '#000',
+        :background_colors => ['#12b0c5', '#12b0c5']
+    }
     # Make the labels for the graph
     i = 0
     days.each do |day|
@@ -143,5 +165,4 @@ SCHEDULER.every '5s' do
 
     # Send the users array to the html template
     send_event('timesync', { users: top_users })
-    WebMock.enable!
 end

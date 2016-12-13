@@ -29,6 +29,7 @@ timesync:
   url: ''
   user: ''
   password: ''
+  use_ldap:
   time_length:
 
 dimensions:

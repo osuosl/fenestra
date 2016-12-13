@@ -4,12 +4,7 @@ gem 'dashing'
 gem 'unicorn', '~> 5.1.0'
 
 ## Remove this if you don't need a timesync widget
-gem 'bcrypt'
-gem 'rest-client'
-gem 'test-unit'
-gem 'webmock'
-gem 'rake'
-#gem 'gruff'
+gem 'rimesync', '~> 0.1'
 
 ## Remove this if you don't need a twitter widget.
 gem 'twitter', '>= 5.0.0'
