@@ -12,7 +12,7 @@ SCHEDULER.every '1m' do
         conn.headers['Authorization'] = "Token token=#{auth_token}"
         conn.headers['Accept'] = 'application/vnd.pagerduty+json;version=2'
         conn.headers['Content-Type'] = 'application/json'
-        conn.params['since'] = (Time.now.utc - 60).iso8601
+        conn.params['since'] = Time.now.utc.iso8601
         conn.params['until'] = (Time.now.utc + 60).iso8601
     end
 
@@ -22,7 +22,10 @@ SCHEDULER.every '1m' do
         if response.status == 200
             schedule = JSON.parse(response.body)
             schedule_name = schedule['schedule']['name']
-            user_name = schedule['schedule']['users'][0]['summary']
+
+            schedule = schedule['schedule']['final_schedule']
+            schedule = schedule['rendered_schedule_entries'][0]
+            user_name = schedule['user']['summary']
         else
             user_name = 'Error'
         end
