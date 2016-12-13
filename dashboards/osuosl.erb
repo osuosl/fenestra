@@ -1,33 +1,49 @@
 <div class="gridster" ng-controller="EventCtrl">
     <ul>
-        <% if settings.twitter_set %>
-            <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
-            <div ng-controller="TweetCtrl">
-                <comment-carousel comments="comments">
-                </comment-carousel>
-            </div>
-            <i class="icon-twitter icon-background"></i>
-            </li>
-        <% end %>
-        <li data-row="1" data-col="3" data-sizex="2" data-sizey="1">
-        <div ng-controller="NeroCtrl">
-            <nero-img></nero-img>
-        </div>
-        </li>
         <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-        <div ng-controller="CommitsCtrl">
-            <commits></commits>
-        </div>
-        </li>
-        <li data-row="2" data-col="3" data-sizex="2" data-sizey="1">
-        <div ng-controller="LanguagesCtrl">
-            <languages-graph></languages-graph>
-        </div>
+            <div ng-controller="CommitsCtrl">
+                <commits></commits>
+            </div>
         </li>
         <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
-        <div ng-controller="JenkinsCtrl">
-            <jenkins-widget></jenkins-widget>
-        </div>
+            <div ng-controller="JenkinsCtrl">
+                <jenkins-widget></jenkins-widget>
+            </div>
         </li>
+        <li data-row="1" data-col="3" data-sizex="2" data-sizey="1">
+            <div ng-controller="NeroCtrl">
+                <nero-img></nero-img>
+            </div>
+        </li>
+        <% if settings.twitter_set %>
+            <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
+                <div ng-controller="LanguagesCtrl">
+                    <languages-graph></languages-graph>
+                </div>
+            </li>
+            <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+                <div ng-controller="TweetCtrl">
+                    <comment-carousel comments="comments">
+                    </comment-carousel>
+                </div>
+                <i class="icon-twitter icon-background"></i>
+            </li>
+            <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
+                <div ng-controller="TimesyncCtrl">
+                    <timesync-data></timesync-data>
+                </div>
+            </li>
+        <% else %>
+            <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
+                <div ng-controller="TimesyncCtrl">
+                    <timesync-data></timesync-data>
+                </div>
+            </li>
+            <li data-row="2" data-col="3" data-sizex="2" data-sizey="1">
+                <div ng-controller="LanguagesCtrl">
+                    <languages-graph></languages-graph>
+                </div>
+            </li>
+        <% end %>
     </ul>
 </div>

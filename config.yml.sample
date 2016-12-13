@@ -1,4 +1,4 @@
-// TODO make authentication environment variables
+# TODO make authentication environment variables
 twitter:
   consumer_key: ''
   consumer_secret: ''
@@ -24,6 +24,13 @@ jenkins:
   url: ''
   user: ''
   password: ''
+
+timesync:
+  url: ''
+  user: ''
+  password: ''
+  use_ldap:
+  time_length:
 
 dimensions:
   width: 1920
