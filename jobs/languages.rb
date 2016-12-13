@@ -29,7 +29,7 @@ SCHEDULER.every '1h' do
   }
 
   languages
-    .select { |_, val| val > 0.01 }
+    .select { |_, val| val.fdiv(sum) > 0.01 }
     .sort_by{ |_, val| val }
     .reverse
     .each do |lang, val|
