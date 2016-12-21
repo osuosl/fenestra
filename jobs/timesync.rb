@@ -36,8 +36,10 @@ SCHEDULER.every '1h' do
 
     # Construct the search query
     query = {
-        'start' => [startTime.iso8601],
-        'end' => [endTime.iso8601]
+        # ISO 8601 is "####-##-##T##:##:##Z", but we just want the dates
+        # The date is always the first 10 characters, so just grab those
+        'start' => [startTime.iso8601[0..9]],
+        'end' => [endTime.iso8601[0..9]]
     }
 
     # Get all the times from the past week
