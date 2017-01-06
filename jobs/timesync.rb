@@ -54,7 +54,7 @@ SCHEDULER.every '1h' do
     user_times = Hash.new
     times.each do |time|
         # We want the duration in hours, not seconds
-        duration = time['duration'].fdiv(3600).round
+        duration = time['duration'].fdiv(3600)
         # If the key doesn't exist, make it, else update it
         if user_times.key?(time['user'])
             user_times[time['user']] = user_times[time['user']] + duration
@@ -66,8 +66,9 @@ SCHEDULER.every '1h' do
     # Sort the users by total time worked and get the top 10
     top_users = user_times.sort_by{|name, time| time}.reverse[0..10]
     # Get their display name instead of their username
-    top_users.each do |user|
+    top_users.each do |user, time|
         user[0] = ts.get_users(user[0])[0]['display_name']
+        time = time.round
     end
 
     # Get the total times for each project
@@ -111,7 +112,7 @@ SCHEDULER.every '1h' do
     total_times = Hash.new
     times.each do |time|
         # Hours, not seconds
-        duration = time['duration'] / 3600
+        duration = time['duration'].fdiv(3600)
         # Add the times up based on day
         days.each do |day|
             if time['date_worked'] == day
@@ -130,7 +131,7 @@ SCHEDULER.every '1h' do
     days.each do |day|
         total_times.each do |time|
             if time[0] == day
-                full_times[day] = time[1]
+                full_times[day] = time[1].round
             end
         end
         if !full_times.key?(day)
