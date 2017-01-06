@@ -149,6 +149,7 @@ SCHEDULER.every '1h' do
         :font_color => '#000',
         :background_colors => ['#12b0c5', '#12b0c5']
     }
+    time_graph.y_axis_increment = 1
     # Make the labels for the graph
     i = 0
     days.each do |day|
