@@ -67,7 +67,7 @@ SCHEDULER.every '1h' do
     top_users = user_times.sort_by{|name, time| time}.reverse[0..10]
     # Get their display name instead of their username
     top_users.each do |user, time|
-        user[0] = ts.get_users(user[0])[0]['display_name']
+        user = ts.get_users(user)[0]['display_name']
         time = time.round
     end
 
@@ -131,7 +131,7 @@ SCHEDULER.every '1h' do
     days.each do |day|
         total_times.each do |time|
             if time[0] == day
-                full_times[day] = time[1].round
+                full_times[day] = time[1]
             end
         end
         if !full_times.key?(day)
