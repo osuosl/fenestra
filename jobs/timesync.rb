@@ -54,7 +54,7 @@ SCHEDULER.every '1h' do
     user_times = Hash.new
     times.each do |time|
         # We want the duration in hours, not seconds
-        duration = time['duration'] / 3600
+        duration = time['duration'].fdiv(3600).round
         # If the key doesn't exist, make it, else update it
         if user_times.key?(time['user'])
             user_times[time['user']] = user_times[time['user']] + duration
