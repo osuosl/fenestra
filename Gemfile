@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'smashing'
 gem 'unicorn', '~> 5.1.0'
 
+gem 'rubocop'
+
 ## Remove this if you don't need a timesync widget
 gem 'rimesync', '~> 0.1'
 

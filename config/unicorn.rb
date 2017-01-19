@@ -1,5 +1,5 @@
 # set path to application
-app_dir = "/home/fenestra"
+app_dir = '/home/fenestra'
 working_directory "#{app_dir}/fenestra"
 
 # Set unicorn options

@@ -1,5 +1,5 @@
 require 'dashing'
-require "sinatra"
+require 'sinatra'
 
 map Sinatra::Application.assets_prefix do
   run Sinatra::Application.sprockets

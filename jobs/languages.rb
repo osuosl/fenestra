@@ -6,7 +6,7 @@ require 'octokit'
 projects = settings.projects || []
 
 SCHEDULER.every '1h' do
-  client = Octokit::Client.new(:access_token => settings.github['token'])
+  client = Octokit::Client.new(access_token: settings.github['token'])
   languages = Hash.new(0)
   sum = 0
 
@@ -18,23 +18,22 @@ SCHEDULER.every '1h' do
     end
   end
 
-  #Begin constructing actual graph
+  # Begin constructing actual graph
   g = Gruff::Pie.new
   g.title = nil
   g.theme = {
-  :colors => ['#A11C03', '#9DB61E', '#2C3E50', '#F39C12', '#BF42F4',
-              '#00C437', '#210FA8', '#763e82', '#D1C600', '#05B270'],
-  :marker_color => '#000',
-  :background_colors => ['#00B0C6', '#00B0C6']
+    colors: %w(#A11C03 #9DB61E #2C3E50 #F39C12 #BF42F4 #00C437 #210FA8 #763e82 #D1C600 #05B270),
+    marker_color: '#000',
+    background_colors: %w(#00B0C6 #00B0C6)
   }
 
   languages
     .select { |_, val| val.fdiv(sum) > 0.01 }
-    .sort_by{ |_, val| val }
+    .sort_by { |_, val| val }
     .reverse
     .each do |lang, val|
       g.data(lang, val)
     end
-  g.write("assets/images/piechart.png")
+  g.write('assets/images/piechart.png')
   send_event('languages', {})
 end

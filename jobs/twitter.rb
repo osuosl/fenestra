@@ -6,15 +6,15 @@ require 'sinatra'
 twitter = Twitter::REST::Client.new do |config|
   config.consumer_key = settings.twitter['consumer_key']
   config.consumer_secret = settings.twitter['consumer_secret']
-#  config.oauth_token = settings.twitter['oauth_token']
-#  config.oauth_token_secret = settings.twitter['oauth_token_secret']
+  # config.oauth_token = settings.twitter['oauth_token']
+  # config.oauth_token_secret = settings.twitter['oauth_token_secret']
 end
 
-search_term = URI::encode('osuosl')
+search_term = URI.encode('osuosl')
 
-SCHEDULER.every '10m', :first_in => 0 do |job|
+SCHEDULER.every '10m', first_in: 0 do
   begin
-    tweets = twitter.search("#{search_term}")
+    tweets = twitter.search(search_term.to_s)
 
     if tweets
       tweets = tweets.map do |tweet|
@@ -24,6 +24,6 @@ SCHEDULER.every '10m', :first_in => 0 do |job|
     end
 
   rescue Twitter::Error
-    #puts "\e[33mFor the twitter widget to work, you need to put in your twitter API keys in the jobs/twitter.rb file.\e[0m"
+    puts 'For the twitter widget to work, you need to put in your twitter API keys in the jobs/twitter.rb file.'
   end
 end
