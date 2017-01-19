@@ -10,9 +10,14 @@
                 <jenkins-widget></jenkins-widget>
             </div>
         </li>
-        <li data-row="1" data-col="3" data-sizex="2" data-sizey="1">
+        <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
             <div ng-controller="NeroCtrl">
                 <nero-img></nero-img>
+            </div>
+        </li>
+        <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+            <div ng-controller="PagerdutyCtrl">
+                <on-call></on-call>
             </div>
         </li>
         <% if settings.twitter_set %>

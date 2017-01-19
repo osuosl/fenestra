@@ -1,0 +1,35 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color:  #ec6e1d;
+$value-color:       #fff;
+
+$title-color:       rgba(255, 255, 255, 1.0);
+$label-color:       rgba(255, 255, 255, 1.0);
+$moreinfo-color:    rgba(255, 255, 255, 0.7);
+
+// ----------------------------------------------------------------------------
+// Widget-list styles
+// ----------------------------------------------------------------------------
+#pagerduty {
+
+  background-color: $background-color;
+  vertical-align: top;
+
+  .title {
+    color: $title-color;
+    font-weight: bold;
+    font-size: 1.8em;
+    margin-bottom: 60px;
+    margin-top: 80px;
+  }
+
+  .label {
+    line-height: 3em;
+    color: $label-color;
+
+    .oncall-schedule {
+        font-weight: bold;
+    }
+  }
+}

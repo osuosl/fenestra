@@ -1,0 +1,11 @@
+<div id='pagerduty' class='widget-list' ng-controller='PagerdutyCtrl'>
+	<div class='wrapper'>
+    	<h1 class='title'>On-Call Staff</h1>
+        <div id='oncall-users'>
+            <p class='oncall label' ng-repeat="(schedule, user) in schedules">
+                <span class='oncall-schedule'>{{schedule}}:</span>
+                <span class='oncall-user'>{{user}}</span>
+            </p>
+        </div>
+    </div>
+</div>
