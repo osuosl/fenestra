@@ -4,7 +4,7 @@ require 'rimesync'
 require 'net/http'
 require 'webmock'
 
-SCHEDULER.every '1h' do
+SCHEDULER.every '1h', first_in: '10s' do
 
     # Auth with timesync through rimesync
     ts = TimeSync.new(baseurl=settings.timesync['url'])
@@ -66,9 +66,9 @@ SCHEDULER.every '1h' do
     # Sort the users by total time worked and get the top 10
     top_users = user_times.sort_by{|name, time| time}.reverse[0..10]
     # Get their display name instead of their username
-    top_users.each do |user, time|
-        user = ts.get_users(user)[0]['display_name']
-        time = time.round
+    top_users.each do |user|
+        user[0] = ts.get_users(user[0])[0]['display_name']
+        user[1] = user[1].round
     end
 
     # Get the total times for each project
