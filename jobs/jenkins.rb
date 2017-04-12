@@ -7,7 +7,7 @@ JENKINS_URI = settings.jenkins['url']
 JENKINS_USER = settings.jenkins['user']
 JENKINS_PASS = settings.jenkins['token'] || settings.jenkins['password']
 
-SCHEDULER.every '1h' do
+SCHEDULER.every '1h', first_in: '10s' do
   client = JenkinsApi::Client.new(server_url: JENKINS_URI,
                                   username: JENKINS_USER, password: JENKINS_PASS, log_level: Logger::WARN)
 

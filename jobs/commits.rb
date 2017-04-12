@@ -4,7 +4,7 @@ require 'octokit'
 
 projects = settings.projects || []
 
-SCHEDULER.every '1h' do
+SCHEDULER.every '1h', first_in: '5s' do
   client = Octokit::Client.new(access_token: settings.github['token'])
 
   project = projects.first['repo']

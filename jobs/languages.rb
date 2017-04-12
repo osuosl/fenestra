@@ -5,7 +5,7 @@ require 'octokit'
 
 projects = settings.projects || []
 
-SCHEDULER.every '1h' do
+SCHEDULER.every '1h', first_in: '15s' do
   client = Octokit::Client.new(access_token: settings.github['token'])
   languages = Hash.new(0)
   sum = 0
