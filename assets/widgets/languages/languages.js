@@ -1,18 +1,17 @@
-var dashing = dashing || angular.module('dashing', []);
+'use strict';
 
-dashing.controller('LanguagesCtrl', ['$scope', 
-		function ($scope) {
-			'use strict';
+dashing = dashing || angular.module('dashing', []);
 
-			$scope.$on('languages', function (e, data) {
-				angular.extend($scope, data);
-			});
-		}
-])
-
-.directive('languagesGraph', function() {
-	return {
-		restrict: 'E',
-    templateUrl: '/assets/languages/languages.html'
-	}
+dashing.controller('LanguagesCtrl', ['$scope',
+  $scope => {
+    $scope.$on('languages', (e, data) => {
+      angular.extend($scope, data);
+    });
+  },
+]).
+directive('languagesGraph', () => {
+  return {
+    restrict: 'E',
+    templateUrl: '/assets/languages/languages.html',
+  };
 });

@@ -172,7 +172,7 @@ module.exports = {
     'object-property-newline': 'off',
 
     // Require one variable per `var`, `let`, or `const` statement
-    'one-var': ['warn', 'always'],
+    'one-var': 0,
 
     // Require newlines around variable declarations
     'one-var-declaration-per-line': ['warn', 'always'],
@@ -190,7 +190,7 @@ module.exports = {
     'quote-props': ['warn', 'as-needed'],
 
     // Double quotes are like, twice as much quote as you need
-    quotes: ['warn', 'single'],
+    quotes: ['warn', 'single', {avoidEscape: true, allowTemplateLiterals: true}],
 
     // Don't require JSDoc comments
     'require-jsdoc': 'off',
@@ -207,8 +207,8 @@ module.exports = {
     // Require a space before blocks
     'space-before-blocks': 'warn',
 
-    // Require a space before a function declaration's parens
-    'space-before-function-paren': 'warn',
+    // Disallow a space before a function declaration's parens
+    'space-before-function-paren': ['warn', 'never'],
 
     // Disallow a space within parens
     'space-in-parens': ['warn', 'never'],

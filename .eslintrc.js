@@ -17,5 +17,9 @@ module.exports = {
   },
   rules: {
     strict: ['error', 'global'],
+  },
+  globals: {
+    dashing: true,
+    angular: true
   }
 };

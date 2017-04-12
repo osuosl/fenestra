@@ -20,3 +20,4 @@ Style/WhileUntilModifier:
 
 Metrics/BlockLength:
   Enabled: false
+

@@ -146,7 +146,7 @@ module.exports = {
     'no-octal-escape': 'error',
 
     // Disallow reassigning function parameters
-    'no-param-reassign': ['error', {props: true}],
+    'no-param-reassign': 0,
 
     // Disallow accessing the __proto__ property
     'no-proto': 'error',

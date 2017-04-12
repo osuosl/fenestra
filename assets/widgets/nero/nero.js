@@ -1,18 +1,17 @@
-var dashing = dashing || angular.module('dashing', []);
+'use strict';
+
+dashing = dashing || angular.module('dashing', []);
 
 dashing.controller('NeroCtrl', ['$scope',
-  function ($scope) {
-    'use strict';
-
-    $scope.$on('nero', function (e, data) {
+  $scope => {
+    $scope.$on('nero', (e, data) => {
       angular.extend($scope, data);
     });
-  }
-])
-
-.directive('neroImg', function() {
+  },
+]).
+directive('neroImg', () => {
   return {
     restrict: 'E',
-    templateUrl: '/assets/nero/nero.html'
-  }
+    templateUrl: '/assets/nero/nero.html',
+  };
 });

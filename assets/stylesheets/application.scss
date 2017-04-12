@@ -116,7 +116,7 @@ h3 {
 // Base widget styles
 // ----------------------------------------------------------------------------
 .gridster {
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 .icon-background {
@@ -167,7 +167,7 @@ text-align: center;
 .widget-list:before{
 	content:'';
 	display: inline-block;
-	height: 0px;
+	height: 0;
 	vertical-align: middle;
 	margin-right: -0.25em;
 }
@@ -228,15 +228,14 @@ text-align: center;
   display: none;
   position: fixed;
   top: 0;
-  margin: 0px auto;
   left: 50%;
   z-index: 1000;
   background: black;
   width: 190px;
   text-align: center;
   border: 1px solid white;
-  border-top: 0px;
-  margin-left: -95px;
+  border-top: 0;
+  margin: 0 auto 0 -95px;
   padding: 15px;
 }
 
@@ -246,7 +245,6 @@ text-align: center;
 
 #saving-instructions {
   display: none;
-  padding: 10px;
   width: 500px;
   height: 122px;
   z-index: 1000;
@@ -254,7 +252,7 @@ text-align: center;
   top: 100px;
   color: black;
   font-size: 15px;
-  padding-bottom: 4px;
+  padding: 10px 10px 4px;
 
   textarea {
     white-space: nowrap;
@@ -266,8 +264,8 @@ text-align: center;
 #lean_overlay {
     position: fixed;
     z-index:100;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     height:100%;
     width:100%;
     background: #000;

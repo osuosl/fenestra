@@ -1,18 +1,17 @@
-var dashing = dashing || angular.module('dashing', []);
+'use strict';
+
+dashing = dashing || angular.module('dashing', []);
 
 dashing.controller('CommitsCtrl', ['$scope',
-  function ($scope) {
-    'use strict';
-
-    $scope.$on('commits', function (e, data) {
+  $scope => {
+    $scope.$on('commits', (e, data) => {
       angular.extend($scope, data);
     });
-  }
-])
-
-.directive('commits', function() {
+  },
+]).
+directive('commits', () => {
   return {
     restrict: 'E',
-    templateUrl: '/assets/commits/commits.html'
-  }
+    templateUrl: '/assets/commits/commits.html',
+  };
 });

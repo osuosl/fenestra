@@ -96,5 +96,11 @@
    */
 
   // Allow comparisons to null and undefined
-  "eqnull": true
+  "eqnull": true,
+
+  "globals": {
+    "dashing": true,
+    "angular": true,
+    "EventSource": true
+  }
 }
