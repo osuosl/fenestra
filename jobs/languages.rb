@@ -22,9 +22,9 @@ SCHEDULER.every '1h', first_in: '15s' do
   g = Gruff::Pie.new
   g.title = nil
   g.theme = {
-    colors: %w(#A11C03 #9DB61E #2C3E50 #F39C12 #BF42F4 #00C437 #210FA8 #763e82 #D1C600 #05B270),
+    colors: %w[#A11C03 #9DB61E #2C3E50 #F39C12 #BF42F4 #00C437 #210FA8 #763e82 #D1C600 #05B270],
     marker_color: '#000',
-    background_colors: %w(#00B0C6 #00B0C6)
+    background_colors: %w[#00B0C6 #00B0C6]
   }
 
   languages

@@ -4,9 +4,9 @@ require 'rimesync'
 require 'net/http'
 require 'webmock'
 
-SCHEDULER.every '1h', first_in: '20s' do
+SCHEDULER.every '1h', first_in: '3s' do
   # Auth with timesync through rimesync
-  ts = TimeSync.new(baseurl: settings.timesync['url'])
+  ts = TimeSync.new(settings.timesync['url'])
   resp = ts.authenticate(username: settings.timesync['user'],
                          password: settings.timesync['password'],
                          auth_type: settings.timesync['use_ldap'] ? 'ldap' : 'password')
@@ -37,14 +37,15 @@ SCHEDULER.every '1h', first_in: '20s' do
   query = {
     # ISO 8601 is "####-##-##T##:##:##Z", but we just want the dates
     # The date is always the first 10 characters, so just grab those
-    start: [start_time.iso8601[0..9]],
-    end: [end_time.iso8601[0..9]]
+    'start' => [start_time.iso8601[0..9]],
+    'end' => [end_time.iso8601[0..9]]
   }
 
   # Get all the times from the past week
   times = ts.get_times(query)
 
-  if times.is_a? Hash
+  if times.is_a?(Hash) ||
+     (times.is_a?(Array) && times.length == 1 && times[0].key?('rimesync error'))
     send_event('timesync', error: resp)
     return
   end
@@ -96,9 +97,9 @@ SCHEDULER.every '1h', first_in: '20s' do
   project_graph = Gruff::Pie.new
   project_graph.title = 'Projects'
   project_graph.theme = {
-    colors: %w(#A11C03 #9DB61E #2C3E50 #F39C12 #BF42F4 #00C437 #210FA8 #763e82 #D1C600 #05B270),
+    colors: %w[#A11C03 #9DB61E #2C3E50 #F39C12 #BF42F4 #00C437 #210FA8 #763e82 #D1C600 #05B270],
     marker_color: '#000',
-    background_colors: %w(#12b0c5 #12b0c5)
+    background_colors: %w[#12b0c5 #12b0c5]
   }
   # Put in the data: name and total time
   project_times.each do |project|
@@ -141,7 +142,7 @@ SCHEDULER.every '1h', first_in: '20s' do
     colors: ['#A11C03'],
     marker_color: '#fff',
     font_color: '#000',
-    background_colors: %w(#12b0c5 #12b0c5)
+    background_colors: %w[#12b0c5 #12b0c5]
   }
   time_graph.y_axis_increment = 1
   # Make the labels for the graph

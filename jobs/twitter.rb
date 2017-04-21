@@ -22,7 +22,6 @@ SCHEDULER.every '10m', first_in: 0 do
       end
       send_event('twitter_mentions', comments: tweets)
     end
-
   rescue Twitter::Error
     puts 'For the twitter widget to work, you need to put in your twitter API keys in the jobs/twitter.rb file.'
   end

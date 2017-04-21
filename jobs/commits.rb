@@ -15,10 +15,10 @@ SCHEDULER.every '1h', first_in: '5s' do
 
   # Commit
   data = client.git_commit(project, latest_sha)
-  latest_committer = data['committer']['name']
+  latest_committer = data['author']['name']
   commit_message = data['message']
-  commit_message = commit_message.split[0...15].join(' ')
-  commit_date = data['committer']['date'].strftime('%a %b %e %Y')
+  commit_message = commit_message.split[6...21].join(' ')
+  commit_date = data['author']['date'].strftime('%a %b %e %Y')
 
   send_event('commits',
              project: {
