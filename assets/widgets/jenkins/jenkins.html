@@ -1,67 +1,68 @@
 <script>
-window.onload = function(){
-	canvas = document.getElementById('jenkins-canvas');
-	ctx = canvas.getContext('2d');
-	var x = canvas.width;
-	var y = canvas.height;
-	var degrees = 0;
-	var ndegrees = 0;
-	var diff = 0;
-	var color = "#12B0C5";
-	var bgcolor = "#444";
-	var animation, redraw;
+  window.onload = function () {
+    canvas = document.getElementById('jenkins-canvas');
+    ctx = canvas.getContext('2d');
+    const x = canvas.width;
+    const y = canvas.height;
+    let degrees = 0;
+    let ndegrees = 0;
+    let diff = 0;
+    const color = "#12B0C5";
+    const bgcolor = "#444";
+    let animation, redraw;
 
-	function init() {
-		ctx.clearRect(0, 0, x, y);
+    function init() {
+      ctx.clearRect(0, 0, x, y);
 
-		ctx.beginPath();
-		ctx.strokeStyle = bgcolor;
-		ctx.lineWidth = 30;
-		ctx.arc(x/2, y/2, 50, 0, Math.PI*2, false);
-		ctx.stroke();
+      ctx.beginPath();
+      ctx.strokeStyle = bgcolor;
+      ctx.lineWidth = 30;
+      ctx.arc(x / 2, y / 2, 50, 0, Math.PI * 2, false);
+      ctx.stroke();
 
-		var radians = degrees * Math.PI / 180;
-		ctx.beginPath();
-		ctx.strokeStyle = color;
-		ctx.lineWidth = 30;
-		ctx.arc(x/2, y/2, 50, 0-(90*Math.PI/180), radians-(90*Math.PI/180), false);
-		ctx.stroke();
-	}
-	function draw() {
-		if(typeof animation != undefined) clearInterval(animation);
+      const radians = degrees * Math.PI / 180;
+      ctx.beginPath();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 30;
+      ctx.arc(x / 2, y / 2, 50, 0 - (90 * Math.PI / 180), radians - (90 * Math.PI / 180), false);
+      ctx.stroke();
+    }
 
-	// Getting angular scope variable in here is not easy
-		var dom_el = document.querySelector('[ng-controller="JenkinsCtrl"]');
-		var ng_el = angular.element(dom_el);
-		var ng_el_scope = ng_el.scope();
-		var percent = ng_el_scope.j.value*.01;
-		ndegrees = Math.round(percent*360);
-		diff = ndegrees - degrees;
-		animation = setInterval(animate_to, 1000/diff);
-	}
+    function draw() {
+      if (typeof animation != undefined) clearInterval(animation);
 
-	function animate_to() {
-		//clear animation loop if degrees reaches to new_degrees
-		if(degrees == ndegrees)
-			clearInterval(animation);
-		if(degrees < ndegrees)
-			degrees++;
-		else
-			degrees--;
-		init();
-	}
+      // Getting angular scope variable in here is not easy
+      const dom_el = document.querySelector('[ng-controller="JenkinsCtrl"]');
+      const ng_el = angular.element(dom_el);
+      const ng_el_scope = ng_el.scope();
+      const percent = ng_el_scope.j.value * .01;
+      ndegrees = Math.round(percent * 360);
+      diff = ndegrees - degrees;
+      animation = setInterval(animate_to, 1000 / diff);
+    }
 
-	draw();
-	//Redraw every minute
-	redraw = setInterval(draw, 2000);
-};
+    function animate_to() {
+      //clear animation loop if degrees reaches to new_degrees
+      if (degrees == ndegrees)
+        clearInterval(animation);
+      if (degrees < ndegrees)
+        degrees++;
+      else
+        degrees--;
+      init();
+    }
+
+    draw();
+    //Redraw every minute
+    redraw = setInterval(draw, 2000);
+  };
 </script>
 <div id='jenkins' class='widget-list {{ j.color }}' ng-controller='JenkinsCtrl'>
-	<div class='wrapper'>
-		<h2 class='title'>Jenkins Builds</h2>
-		<canvas id='jenkins-canvas'></canvas>
-		<h4> {{ j.value }}% builds are passing</h4>
-		<p class='label'>Last built: {{ j.project }} at {{ j.time }}</p>
-	</div>
+    <div class='wrapper'>
+        <h2 class='title'>Jenkins Builds</h2>
+        <canvas id='jenkins-canvas'></canvas>
+        <h4> {{ j.value }}% builds are passing</h4>
+        <p class='label'>Last built: {{ j.project }} at {{ j.time }}</p>
+    </div>
 </div>
 

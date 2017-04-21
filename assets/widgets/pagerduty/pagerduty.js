@@ -1,18 +1,17 @@
-var dashing = dashing || angular.module('dashing', []);
+'use strict';
+
+dashing = dashing || angular.module('dashing', []);
 
 dashing.controller('PagerdutyCtrl', ['$scope',
-  function ($scope) {
-    'use strict';
-
-    $scope.$on('pagerduty', function (e, data) {
+  $scope => {
+    $scope.$on('pagerduty', (e, data) => {
       angular.extend($scope, data);
     });
-  }
-])
-
-.directive('onCall', function() {
+  },
+]).
+directive('onCall', () => {
   return {
     restrict: 'E',
-    templateUrl: '/assets/pagerduty/pagerduty.html'
+    templateUrl: '/assets/pagerduty/pagerduty.html',
   };
 });

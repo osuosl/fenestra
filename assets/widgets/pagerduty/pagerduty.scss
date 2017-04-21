@@ -1,12 +1,12 @@
 // ----------------------------------------------------------------------------
 // Sass declarations
 // ----------------------------------------------------------------------------
-$background-color:  #ec6e1d;
-$value-color:       #fff;
+$background-color: #ec6e1d;
+$value-color: #fff;
 
-$title-color:       rgba(255, 255, 255, 1.0);
-$label-color:       rgba(255, 255, 255, 1.0);
-$moreinfo-color:    rgba(255, 255, 255, 0.7);
+$title-color: rgba(255, 255, 255, 1.0);
+$label-color: rgba(255, 255, 255, 1.0);
+$moreinfo-color: rgba(255, 255, 255, 0.7);
 
 // ----------------------------------------------------------------------------
 // Widget-list styles
@@ -29,7 +29,7 @@ $moreinfo-color:    rgba(255, 255, 255, 0.7);
     color: $label-color;
 
     .oncall-schedule {
-        font-weight: bold;
+      font-weight: bold;
     }
   }
 }

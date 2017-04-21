@@ -27,6 +27,7 @@ SCHEDULER.every '1m' do
       schedule = schedule['rendered_schedule_entries'][0]
       user_name = schedule['user']['summary']
     else
+      schedule_name = 'Error'
       user_name = 'Error'
     end
 
