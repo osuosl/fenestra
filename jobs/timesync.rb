@@ -4,7 +4,7 @@ require 'rimesync'
 require 'net/http'
 require 'webmock'
 
-SCHEDULER.every '1h', first_in: '3s' do
+SCHEDULER.every '1h', first_in: '20s' do
   # Auth with timesync through rimesync
   ts = TimeSync.new(settings.timesync['url'])
   resp = ts.authenticate(username: settings.timesync['user'],
